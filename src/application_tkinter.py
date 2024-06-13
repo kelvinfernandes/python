@@ -15,7 +15,12 @@ class GUIApplication (Application, customtkinter.CTk):
         #windows configuration
         self.geometry("1000x800")
         self.title("Python application")
-        
+
+        #top level window
+        self.option_window = None
+        self.input_dialog = None
+
+
         #Buttons
         self.button_options = customtkinter.CTkButton(self, text="Options", command=self.button_app_options)
         self.button_options.grid(row=0, column=0, padx=15, pady=15)
@@ -26,12 +31,25 @@ class GUIApplication (Application, customtkinter.CTk):
         self.combo_box_characters = customtkinter.CTkComboBox(self, values=["Haven", "Jonesy", "Peely"], command=self.button_select_char)
         self.combo_box_characters.grid(row=0, column=2)
 
-        self.option_window = None
+
+        self.button_input = customtkinter.CTkButton(self, text="Enter new character", command=self.button_input_new_char)
+        self.button_input.grid(row=1, column=0)
+
+        self.label_character_name = customtkinter.CTkLabel(self, text="No character selected")
+        self.label_character_name.grid(row=3, column=0)
+
+
     def app_main_menu(self):
         pass
     
     def button_select_char(self):
         pass
+
+    
+    def button_input_new_char(self):
+        self.input_dialog = customtkinter.CTkInputDialog(text="Please enter a new character", title="input")
+        #self.input_dialog.get_input
+        self.label_character_name.configure(text=self.input_dialog.get_input())
 
     def app_quit(self):
         exit()

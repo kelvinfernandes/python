@@ -1,0 +1,3 @@
+from personne import Personne
+
+class Enseignant(Personne): ...
